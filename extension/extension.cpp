@@ -22,7 +22,7 @@ DEFINE_PRIM(_VOID, refresh, _NO_ARG);
 HL_PRIM void HL_NAME(set_presence)(discord::Presence* presence) {
 	discord::RPCManager::get().setPresence(*presence);
 }
-DEFINE_PRIM(_VOID, set_presence, _ABSTRACT(discord::Presence*));
+DEFINE_PRIM(_VOID, set_presence, _ABSTRACT(discord_presence));
 
 HL_PRIM void HL_NAME(clear_presence)() {
 	discord::RPCManager::get().clearPresence();
@@ -32,33 +32,33 @@ DEFINE_PRIM(_VOID, clear_presence, _NO_ARG);
 HL_PRIM discord::Presence* HL_NAME(get_presence)() {
 	return &discord::RPCManager::get().getPresence();
 }
-DEFINE_PRIM(_ABSTRACT(discord::Presence*), get_presence, _NO_ARG);
+DEFINE_PRIM(_ABSTRACT(discord_presence), get_presence, _NO_ARG);
 
 HL_PRIM discord::Presence* HL_NAME(presence_alloc)() {
 	return (discord::Presence*)hl_gc_alloc_raw(sizeof(discord::Presence));
 }
-DEFINE_PRIM(_ABSTRACT(discord::Presence*), presence_alloc, _NO_ARG);
+DEFINE_PRIM(_ABSTRACT(discord_presence), presence_alloc, _NO_ARG);
 
 #define MAKE_STRING_SET(name, member) \
 HL_PRIM discord::Presence* HL_NAME(presence_set_##name)(discord::Presence* presence, vstring* v) { \
 	presence->set##member(hl_to_utf8(v->bytes)); \
 	return presence; \
 } \
-DEFINE_PRIM(_ABSTRACT(discord::Presence*), presence_set_##name, _ABSTRACT(discord::Presence*) _STRING);
+DEFINE_PRIM(_ABSTRACT(discord_presence), presence_set_##name, _ABSTRACT(discord_presence) _STRING);
 
 #define MAKE_INT64_SET(name, member) \
 HL_PRIM discord::Presence* HL_NAME(presence_set_##name)(discord::Presence* presence, int64_t v) { \
 	presence->set##member(v); \
 	return presence; \
 } \
-DEFINE_PRIM(_ABSTRACT(discord::Presence*), presence_set_##name, _ABSTRACT(discord::Presence*) _I64);
+DEFINE_PRIM(_ABSTRACT(discord_presence), presence_set_##name, _ABSTRACT(discord_presence) _I64);
 
 #define MAKE_INT32_SET(name, member) \
 HL_PRIM discord::Presence* HL_NAME(presence_set_##name)(discord::Presence* presence, int v) { \
 	presence->set##member(v); \
 	return presence; \
 } \
-DEFINE_PRIM(_ABSTRACT(discord::Presence*), presence_set_##name, _ABSTRACT(discord::Presence*) _I32);
+DEFINE_PRIM(_ABSTRACT(discord_presence), presence_set_##name, _ABSTRACT(discord_presence) _I32);
 
 MAKE_STRING_SET(state, State)
 MAKE_STRING_SET(details, Details)
@@ -76,19 +76,19 @@ HL_PRIM discord::Presence* HL_NAME(presence_set_party_privacy)(discord::Presence
 	presence->setPartyPrivacy((discord::PartyPrivacy)v);
 	return presence;
 }
-DEFINE_PRIM(_ABSTRACT(discord::Presence*), presence_set_party_privacy, _ABSTRACT(discord::Presence*) _I32);
+DEFINE_PRIM(_ABSTRACT(discord_presence), presence_set_party_privacy, _ABSTRACT(discord_presence) _I32);
 
 HL_PRIM discord::Presence* HL_NAME(presence_set_activity_type)(discord::Presence* presence, int v) {
 	presence->setActivityType((discord::ActivityType)v);
 	return presence;
 }
-DEFINE_PRIM(_ABSTRACT(discord::Presence*), presence_set_activity_type, _ABSTRACT(discord::Presence*) _I32);
+DEFINE_PRIM(_ABSTRACT(discord_presence), presence_set_activity_type, _ABSTRACT(discord_presence) _I32);
 
 HL_PRIM discord::Presence* HL_NAME(presence_set_status_display_type)(discord::Presence* presence, int v) {
 	presence->setStatusDisplayType((discord::StatusDisplayType)v);
 	return presence;
 }
-DEFINE_PRIM(_ABSTRACT(discord::Presence*), presence_set_status_display_type, _ABSTRACT(discord::Presence*) _I32);
+DEFINE_PRIM(_ABSTRACT(discord_presence), presence_set_status_display_type, _ABSTRACT(discord_presence) _I32);
 
 MAKE_STRING_SET(match_secret, MatchSecret)
 MAKE_STRING_SET(join_secret, JoinSecret)
@@ -98,9 +98,9 @@ HL_PRIM discord::Presence* HL_NAME(presence_set_instance)(discord::Presence* pre
 	presence->setInstance(v);
 	return presence;
 }
-DEFINE_PRIM(_ABSTRACT(discord::Presence*), presence_set_instance, _ABSTRACT(discord::Presence*) _BOOL);
+DEFINE_PRIM(_ABSTRACT(discord_presence), presence_set_instance, _ABSTRACT(discord_presence) _BOOL);
 
 HL_PRIM void HL_NAME(presence_refresh)(discord::Presence* presence) {
 	presence->refresh();
 }
-DEFINE_PRIM(_VOID, presence_refresh, _ABSTRACT(discord::Presence*));
+DEFINE_PRIM(_VOID, presence_refresh, _ABSTRACT(discord_presence));

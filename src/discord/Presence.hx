@@ -24,7 +24,7 @@ enum abstract StatusDisplayType(Int) {
 }
 
 @:hlNative('discord', 'presence_')
-abstract Presence(hl.Abstract<"discord::Presence*">) {
+abstract Presence(hl.Abstract<"discord_presence">) {
 	public function new() {
 		this = cast alloc();
 	}
