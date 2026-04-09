@@ -3,7 +3,5 @@
 /.vs/
 
 /out/
-
 /src/*idl*
-
-/test/bin/
+/discord.hdll
