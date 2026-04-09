@@ -1,0 +1,3 @@
+-cp generator
+-lib hl-idl:git:https://github.com/onehundredfeet/hl-idl.git
+--macro Generator.generateHl()

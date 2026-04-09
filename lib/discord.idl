@@ -1,0 +1,120 @@
+[Internal="discord::PartyPrivacy", Prefix="discord::PartyPrivacy::"]
+enum PartyPrivacy {
+	"Private",
+	"Public"
+};
+
+[Internal="discord::ActivityType", Prefix="discord::ActivityType::"]
+enum ActivityType {
+	"Game",
+	"Streaming",
+	"Listening",
+	"Watching",
+	"Custom",
+	"Competing"
+};
+
+[Internal="discord::StatusDisplayType", Prefix="discord::StatusDisplayType::"]
+enum StatusDisplayType {
+	"Name",
+	"State",
+	"Details"
+};
+
+[Internal="discord::Presence::Button"]
+interface Button {
+	[Internal="discord::Presence::Button::isEnabled"] bool isEnabled();
+	[Internal="discord::Presence::Button::getLabel"] string getLabel();
+	[Internal="discord::Presence::Button::getURL"] string getUrl();
+
+	[Internal="discord::Presence::Button::setEnabled", AddressOf] Button setEnabled(bool enabled);
+	[Internal="discord::Presence::Button::setLabel", AddressOf] Button setLabel(string label);
+	[Internal="discord::Presence::Button::setURL", AddressOf] Button setUrl(string url);
+
+	[Internal="discord::Presence::Button::set", AddressOf] Button set(string label, string url, bool enabled);
+};
+
+[Internal="discord::Presence"]
+interface Presence {
+	[Internal="discord::Presence::getState"] string getState();
+	[Internal="discord::Presence::setState", AddressOf] Presence setState(string state);
+
+	[Internal="discord::Presence::getDetails"] string getDetails();
+	[Internal="discord::Presence::setDetails", AddressOf] Presence setDetails(string details);
+
+	[Internal="discord::Presence::getStartTimestamp"] int64 getStartTimestamp();
+	[Internal="discord::Presence::setStartTimestamp", AddressOf] Presence setStartTimestamp(int64 startTimestamp);
+
+	[Internal="discord::Presence::getEndTimestamp"] int64 getEndTimestamp();
+	[Internal="discord::Presence::setEndTimestamp", AddressOf] Presence setEndTimestamp(int64 endTimestamp);
+
+	[Internal="discord::Presence::getLargeImageKey"] string getLargeImageKey();
+	[Internal="discord::Presence::setLargeImageKey", AddressOf] Presence setLargeImageKey(string largeImageKey);
+
+	[Internal="discord::Presence::getLargeImageText"] string getLargeImageText();
+	[Internal="discord::Presence::setLargeImageText", AddressOf] Presence setLargeImageText(string largeImageText);
+
+	[Internal="discord::Presence::getSmallImageKey"] string getSmallImageKey();
+	[Internal="discord::Presence::setSmallImageKey", AddressOf] Presence setSmallImageKey(string smallImageKey);
+
+	[Internal="discord::Presence::getSmallImageText"] string getSmallImageText();
+	[Internal="discord::Presence::setSmallImageText", AddressOf] Presence setSmallImageText(string smallImageText);
+
+	[Internal="discord::Presence::getPartyID"] string getPartyId();
+	[Internal="discord::Presence::setPartyID", AddressOf] Presence setPartyId(string partyId);
+
+	[Internal="discord::Presence::getPartySize"] int getPartySize();
+	[Internal="discord::Presence::setPartySize", AddressOf] Presence setPartySize(int partySize);
+
+	[Internal="discord::Presence::getPartyMax"] int getPartyMax();
+	[Internal="discord::Presence::setPartyMax", AddressOf] Presence setPartyMax(int partyMax);
+
+	[Internal="Presence_getPartyPrivacy", CObject] PartyPrivacy getPartyPrivacy();
+	[Internal="discord::Presence::setPartyPrivacy", AddressOf] Presence setPartyPrivacy(PartyPrivacy partyPrivacy);
+
+	[Internal="Presence_getActivityType", CObject] ActivityType getActivityType();
+	[Internal="discord::Presence::setActivityType", AddressOf] Presence setActivityType(ActivityType activityType);
+
+	[Internal="Presence_getStatusDisplayType", CObject] StatusDisplayType getStatusDisplayType();
+	[Internal="discord::Presence::setStatusDisplayType", AddressOf] Presence setStatusDisplayType(StatusDisplayType statusDisplayType);
+
+	[Internal="discord::Presence::getMatchSecret"] string getMatchSecret();
+	[Internal="discord::Presence::setMatchSecret", AddressOf] Presence setMatchSecret(string matchSecret);
+
+	[Internal="discord::Presence::getJoinSecret"] string getJoinSecret();
+	[Internal="discord::Presence::setJoinSecret", AddressOf] Presence setJoinSecret(string joinSecret);
+
+	[Internal="discord::Presence::getSpectateSecret"] string getSpectateSecret();
+	[Internal="discord::Presence::setSpectateSecret", AddressOf] Presence setSpectateSecret(string spectateSecret);
+
+	[Internal="discord::Presence::getInstance"] bool getInstance();
+	[Internal="discord::Presence::setInstance", AddressOf] Presence setInstance(bool instance);
+
+	[Internal="discord::Presence::getButton1", AddressOf] Button getButton1();
+	[Internal="Presence_setButton1", CObject, AddressOf] Presence setButton1(Button button);
+	[Internal="discord::Presence::setButton1", AddressOf] Presence setButton1(string label, string url, bool enabled);
+
+	[Internal="discord::Presence::getButton2", AddressOf] Button getButton2();
+	[Internal="Presence_setButton2", CObject, AddressOf] Presence setButton2(Button button);
+	[Internal="discord::Presence::setButton2", AddressOf] Presence setButton2(string label, string url, bool enabled);
+
+	[Internal="discord::Presence::clear", AddressOf] Presence clear();
+	[Internal="discord::Presence::refresh"] void refresh();
+};
+
+[Internal="discord::RPCManager", NoDelete]
+interface RpcManager {
+	[Static, Internal="discord::RPCManager::get", AddressOf, Const] RpcManager get();
+
+	[Internal="discord::RPCManager::initialize", AddressOf, Const] RpcManager initialize();
+	[Internal="discord::RPCManager::shutdown", AddressOf, Const] RpcManager shutdown();
+
+	[Internal="discord::RPCManager::update", AddressOf, Const] RpcManager update();
+	[Internal="discord::RPCManager::refresh", AddressOf, Const] RpcManager refresh();
+
+	[Internal="discord::RPCManager::getPresence", AddressOf, Const] Presence getPresence();
+	[Internal="discord::RPCManager::clearPresence", AddressOf, Const] RpcManager clearPresence();
+
+	[Internal="discord::RPCManager::setClientID", AddressOf, Const] RpcManager setClientId(string clientId);
+	[Internal="RpcManager_setPresence", CObject, AddressOf, Const] RpcManager setPresence(Presence presence);
+};

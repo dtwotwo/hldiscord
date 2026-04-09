@@ -1,3 +1,9 @@
+/.haxelib/
+
 /.vs/
+
 /out/
-/discord.hdll
+
+/src/*idl*
+
+/test/bin/

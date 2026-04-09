@@ -1,0 +1,30 @@
+{
+	"editor.insertSpaces": false,
+	"files.insertFinalNewline": true,
+	"files.trimFinalNewlines": true,
+	"files.trimTrailingWhitespace": true,
+
+	"[haxe]": {
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "nadako.vshaxe"
+	},
+	"haxe.enableCompilationServer": false,
+
+	"haxecheckstyle.sourceFolders": [ "src" ],
+
+	"search.exclude": {
+		"**/.haxelib": true,
+		"**/bin": true
+	},
+
+	"json.schemas": [
+		{
+			"fileMatch": [ "/config.json" ],
+			"url": "./project/json_schema/config.json"
+		},
+		{
+			"fileMatch": [ "**/data/characters/*.json" ],
+			"url": "./project/json_schema/character.json"
+		}
+	]
+}

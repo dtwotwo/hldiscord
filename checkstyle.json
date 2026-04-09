@@ -1,0 +1,62 @@
+{
+	"defaultSeverity": "INFO",
+	"exclude": {
+		"all": [ "src/funkin/song/fnfc", "src/funkin/assets/manifest" ]
+	},
+	"checks": [
+		{
+			"type": "ArrowFunction",
+			"props": {
+				"allowCurlyBody": true,
+				"allowSingleArgParens": true,
+				"allowReturn": false
+			}
+		},
+		{
+			"type": "HexadecimalLiteral",
+			"props": {
+				"option": "lowerCase"
+			}
+		},
+		{
+			"type": "ModifierOrder",
+			"props": {
+				"modifiers": [
+					"PUBLIC_PRIVATE",
+					"STATIC",
+					"ABSTRACT",
+					"DYNAMIC",
+					"EXTERN",
+					"INLINE",
+					"FINAL",
+					"MACRO",
+					"OVERLOAD",
+					"OVERRIDE"
+				]
+			}
+		},
+		{
+			"type": "VarTypeHint",
+			"props": {
+				"typeHintPolicy": "enforce_all",
+				"severity": "WARNING"
+			}
+		},
+		{
+			"type": "DefaultComesLast"
+		},
+		{
+			"type": "TODOComment",
+			"props": {
+				"format": "^\\s*(TODO)"
+			}
+		},
+		{
+			"type": "TODOComment",
+			"props": {
+				"format": "^\\s*(FIXME|BUG)",
+				"severity": "WARNING"
+			}
+		}
+	]
+}

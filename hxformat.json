@@ -1,0 +1,13 @@
+{
+	"indentation": {
+		"character": "tab"
+	},
+	"lineEnds": {
+		"leftCurly": "after",
+		"rightCurly": "both"
+	},
+	"sameLine": {
+		"ifElse": "next",
+		"tryCatch": "next"
+	}
+}

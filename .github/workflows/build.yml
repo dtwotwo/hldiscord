@@ -44,11 +44,8 @@ jobs:
 
           "HASHLINK=$($hashlinkDir.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
-      - name: Configure CMake
-        run: cmake --preset x64-release
-
-      - name: Build release
-        run: cmake --build out/build/x64-release --config Release
+      - name: Make HDLL
+        run: make-hdll
 
       - name: Package release files
         shell: pwsh
