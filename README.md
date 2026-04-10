@@ -33,6 +33,9 @@ This will produce `discord.hdll` in the root folder. Place it next to your compi
 
 ## Usage
 
+> [!WARNING]
+> `pumpEvents()` must be called from the **main thread**
+
 ```haxe
 function main() {
   discord.Api.Init.init(ready);
@@ -41,7 +44,9 @@ function main() {
 function ready() {
 	trace("ready");
 
-	discord.Api.RpcManager.get()
+	final man = discord.Api.RpcManager.get();
+
+	man
 		.setClientId("YOUR_CLIENT_ID")
 		.initialize()
 		.getPresence()
@@ -51,6 +56,9 @@ function ready() {
 		.setStatusDisplayType(State)
 		.refresh();
 
-	Sys.getChar(false);
+	while (true) {
+		man.pumpEvents();
+		Sys.sleep(0.4);
+	}
 }
 ```

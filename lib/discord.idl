@@ -102,6 +102,18 @@ interface Presence {
 	[Internal="discord::Presence::refresh"] void refresh();
 };
 
+[Internal="discord::User"]
+interface User {
+	[ReadOnly, Get="hl_utf8_to_hlstr"] attribute string id;
+	[ReadOnly, Get="hl_utf8_to_hlstr"] attribute string username;
+	[ReadOnly, Get="hl_utf8_to_hlstr"] attribute string discriminator;
+	[Internal="global_name", ReadOnly, Get="hl_utf8_to_hlstr_opt"] attribute string globalName;
+	[ReadOnly, Get="hl_utf8_to_hlstr_opt"] attribute string avatar;
+	[ReadOnly] attribute bool bot;
+	[ReadOnly] attribute int64 flags;
+	[Internal="premium_type", ReadOnly] attribute int premiumType;
+};
+
 [Internal="discord::RPCManager", NoDelete]
 interface RpcManager {
 	[Static, Internal="discord::RPCManager::get", AddressOf, Const] RpcManager get();
@@ -117,4 +129,13 @@ interface RpcManager {
 
 	[Internal="discord::RPCManager::setClientID", AddressOf, Const] RpcManager setClientId(string clientId);
 	[Internal="RpcManager_setPresence", CObject, AddressOf, Const] RpcManager setPresence(Presence presence);
+
+	[Internal="RpcManager_pumpEvents", CObject, AddressOf, Const] RpcManager pumpEvents();
+
+	[Internal="RpcManager_onReady", CObject, AddressOf, Const] RpcManager onReady(void(User user) onReady);
+	[Internal="RpcManager_onDisconnected", CObject, AddressOf, Const] RpcManager onDisconnected(void(int code, string message) onDisconnected);
+	[Internal="RpcManager_onErrored", CObject, AddressOf, Const] RpcManager onErrored(void(int code, string message) onErrored);
+	[Internal="RpcManager_onJoinGame", CObject, AddressOf, Const] RpcManager onJoinGame(void(string secret) onJoinGame);
+	[Internal="RpcManager_onSpectateGame", CObject, AddressOf, Const] RpcManager onSpectateGame(void(string secret) onSpectateGame);
+	[Internal="RpcManager_onJoinRequest", CObject, AddressOf, Const] RpcManager onJoinRequest(void(User user) onJoinRequest);
 };

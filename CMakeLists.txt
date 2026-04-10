@@ -17,7 +17,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(discord)
 
-add_library(extension SHARED "src/idl_hl.cpp")
+add_library(extension SHARED "src/extension.cpp" "src/idl_hl.cpp")
 
 set_target_properties(extension PROPERTIES
 	OUTPUT_NAME "discord"
